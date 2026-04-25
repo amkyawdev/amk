@@ -1,18 +1,16 @@
 import express from 'express'
 import cors from 'cors'
-import dotenv from 'dotenv'
-
-dotenv.config()
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 7860
 
-// Middleware
 app.use(cors())
 app.use(express.json())
 
-// Simple AI response function
-const generateResponse = (message) => {
+// In-memory chat storage (use database in production)
+const chatHistory = new Map()
+
+function generateResponse(message, userId) {
   const lowerMsg = message.toLowerCase()
   
   if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
@@ -21,11 +19,14 @@ const generateResponse = (message) => {
   if (lowerMsg.includes('help')) {
     return 'I am here to help! What do you need assistance with?'
   }
-  if (lowerMsg.includes('name')) {
-    return 'I am AmkyawDev AI, an AI assistant.'
+  if (lowerMsg.includes('name') || lowerMsg.includes('who are you')) {
+    return 'I am AmkyawDev AI, an AI assistant built by AmkyawDev.'
   }
-  if (lowerMsg.includes('who are you')) {
-    return 'I am an AI assistant built by AmkyawDev.'
+  if (lowerMsg.includes('myanmar')) {
+    return 'Myanmar is a beautiful country in Southeast Asia, known for its rich culture and history.'
+  }
+  if (lowerMsg.includes('thank')) {
+    return 'You are welcome! Any other questions?'
   }
   
   return `I received your message: "${message}". How can I assist you further?`
@@ -33,23 +34,29 @@ const generateResponse = (message) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.json({ 
-    status: 'ok', 
-    message: 'AmkyawDev AI API is running',
-    version: '1.0.0'
-  })
+  res.json({ status: 'ok', message: 'AmkyawDev AI API', version: '1.0.0' })
 })
 
-// Chat endpoint
 app.post('/api/chat', (req, res) => {
   try {
-    const { message } = req.body
+    const { message, userId } = req.body
     
     if (!message) {
       return res.status(400).json({ error: 'Message is required' })
     }
     
-    const response = generateResponse(message)
+    const response = generateResponse(message, userId)
+    
+    // Save to chat history
+    if (userId) {
+      if (!chatHistory.has(userId)) {
+        chatHistory.set(userId, [])
+      }
+      chatHistory.get(userId).push(
+        { role: 'user', content: message },
+        { role: 'assistant', content: response }
+      )
+    }
     
     res.json({ 
       response,
@@ -60,72 +67,22 @@ app.post('/api/chat', (req, res) => {
   }
 })
 
-// Auth routes
-app.post('/api/auth/login', (req, res) => {
-  const { email, password } = req.body
-  
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password are required' })
-  }
-  
-  // Demo response - replace with real authentication
-  res.json({ 
-    success: true,
-    token: 'demo_token_' + Date.now(),
-    user: { email, name: 'User' }
-  })
+app.get('/api/history/:userId', (req, res) => {
+  const { userId } = req.params
+  const history = chatHistory.get(userId) || []
+  res.json({ history })
 })
 
-app.post('/api/auth/register', (req, res) => {
-  const { name, email, password } = req.body
-  
-  if (!name || !email || !password) {
-    return res.status(400).json({ error: 'All fields are required' })
-  }
-  
-  // Demo response - replace with real registration
-  res.json({ 
-    success: true,
-    token: 'demo_token_' + Date.now(),
-    user: { name, email }
-  })
+app.delete('/api/history/:userId', (req, res) => {
+  const { userId } = req.params
+  chatHistory.delete(userId)
+  res.json({ success: true })
 })
 
-// User profile (protected)
-app.get('/api/user/profile', (req, res) => {
-  const authHeader = req.headers.authorization
-  
-  if (!authHeader) {
-    return res.status(401).json({ error: 'Authorization required' })
-  }
-  
-  // Demo response
-  res.json({
-    id: 1,
-    name: 'Demo User',
-    email: 'user@amkyawdev.ai',
-    createdAt: new Date().toISOString()
-  })
-})
-
-// Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'healthy', uptime: process.uptime() })
+  res.json({ status: 'healthy' })
 })
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' })
-})
-
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).json({ error: 'Something went wrong!' })
-})
-
-// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 AmkyawDev AI server running on port ${PORT}`)
-  console.log(`📖 API docs: http://localhost:${PORT}/api/health`)
+  console.log(`🚀 AmkyawDev AI running on port ${PORT}`)
 })
