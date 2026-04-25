@@ -1,4 +1,5 @@
-title: amkyaw-ai-backend
+---
+license: mit
 emoji: 🤖
 colorFrom: green
 colorTo: blue
