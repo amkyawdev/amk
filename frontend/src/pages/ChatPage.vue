@@ -61,11 +61,14 @@ const send = async () => {
   loading.value = true
   scrollToBottom()
   
+  // Get user ID
+  const userId = firebase.auth().currentUser?.uid || 'guest'
+  
   try {
-    const response = await fetch('https://huggingface.co/spaces/amkyawdev/amkyaw-ai-backend/api/chat', {
+    const response = await fetch('https://amkyawdev-amkyaw-ai-backend.hf.space/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userMessage })
+      body: JSON.stringify({ message: userMessage, userId })
     })
     
     const data = await response.json()
