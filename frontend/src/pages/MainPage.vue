@@ -5,7 +5,7 @@
         <h2 class="hero-title">AI Assistant for Everyone</h2>
         <p class="hero-text">Your AI assistant powered by advanced language models</p>
         <div class="buttons">
-          <router-link to="/chat" class="btn btn-primary">Get Started</router-link>
+          <router-link to="/login" class="btn btn-primary">Get Started</router-link>
           <router-link to="/docs" class="btn btn-secondary">Learn More</router-link>
         </div>
       </div>
