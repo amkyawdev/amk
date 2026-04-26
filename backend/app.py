@@ -125,12 +125,7 @@ async def chat(request: ChatRequest):
     """Chat endpoint - sends message to Groq API and returns streaming response"""
     user_id = request.userId or "anonymous"
     
-    # Check token limit
-    if not check_token_limit(user_id):
-        raise HTTPException(
-            status_code=429,
-            detail="ယနေ့အတွက် token ကုန်သွားပါပြီ"
-        )
+    # Token limit removed - unlimited chat for demo
     
     # Use custom system prompt or default
     system_prompt = request.systemPrompt or DEFAULT_SYSTEM_PROMPT
@@ -183,8 +178,7 @@ async def chat(request: ChatRequest):
                 detail=f"Groq API Error: {error_detail}"
             )
         
-        # Increment token count
-        increment_token_count(user_id)
+        # No token counting needed - unlimited
         
         # Return streaming response
         async def generate():

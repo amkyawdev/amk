@@ -16,15 +16,10 @@ const ChatPage = () => {
   const [hasError, setHasError] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showThankingAnimation, setShowThankingAnimation] = useState(false);
-  const [dailyTokens, setDailyTokens] = useState(0);
-  const [dailySpeechSec, setDailySpeechSec] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
   
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
-
-  const DAILY_TOKEN_LIMIT = 20;
-  const DAILY_SPEECH_LIMIT = 20;
 
   // Use system prompt from file (auto-detects chat vs code mode)
   const systemPrompt = getChatPrompt();
@@ -67,11 +62,8 @@ const ChatPage = () => {
   const handleSendMessage = async () => {
     if (!inputText.trim() || isStreaming) return;
     
-    if (dailyTokens >= DAILY_TOKEN_LIMIT) {
-      setHasError(true);
-      return;
-    }
-
+    // No token limit - unlimited chat
+    
     const userMessage = {
       id: Date.now(),
       text: inputText.trim(),
@@ -104,10 +96,7 @@ const ChatPage = () => {
         }
       ]);
       
-      // Update token count
-      const newTokenCount = dailyTokens + 1;
-      setDailyTokens(newTokenCount);
-      localStorage.setItem('dailyTokens', newTokenCount.toString());
+      // No token tracking needed
       
       // Show thanking animation
       setShowThankingAnimation(true);
