@@ -44,7 +44,7 @@ const logout = async () => {
 }
 
 const isAuthPage = computed(() => route.path === '/login' || route.path === '/register')
-const hideNavbar = computed(() => route.path === '/chat')
+const hideNavbar = computed(() => false)
 </script>
 
 <style>
@@ -53,7 +53,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .app { min-height: 100vh; display: flex; flex-direction: column; }
 .navbar { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; z-index: 1000; }
 .page-content { flex: 1; padding-top: 50px; }
-.page-content.chat-page { padding-top: 0; }
 .nav-logo { font-size: 16px; font-weight: 700; color: #10b981; text-decoration: none; }
 .nav-links { display: flex; gap: 16px; align-items: center; }
 .nav-links a { color: #666; text-decoration: none; font-size: 13px; }
