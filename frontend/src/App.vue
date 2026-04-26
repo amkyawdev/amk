@@ -50,11 +50,19 @@ const isAuthPage = computed(() => route.path === '/login' || route.path === '/re
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; }
 .app { min-height: 100vh; }
-.navbar { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; }
-.nav-logo { font-size: 18px; font-weight: 700; color: #10b981; text-decoration: none; }
-.nav-links { display: flex; gap: 24px; align-items: center; }
-.nav-links a { color: #666; text-decoration: none; font-size: 14px; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; }
+.nav-logo { font-size: 16px; font-weight: 700; color: #10b981; text-decoration: none; }
+.nav-links { display: flex; gap: 16px; align-items: center; }
+.nav-links a { color: #666; text-decoration: none; font-size: 13px; }
 .nav-links a:hover { color: #fff; }
-.btn-login { background: #10b981; color: #000 !important; padding: 8px 16px; border-radius: 6px; font-weight: 600; }
-.btn-chat { background: #10b981; color: #000 !important; padding: 8px 16px; border-radius: 6px; font-weight: 600; }
+.btn-login { background: #10b981; color: #000 !important; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 13px; }
+.btn-chat { background: #10b981; color: #000 !important; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 13px; }
+
+@media (max-width: 480px) {
+  .navbar { padding: 10px 12px; }
+  .nav-logo { font-size: 14px; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 12px; }
+  .btn-login, .btn-chat { padding: 5px 10px; font-size: 12px; }
+}
 </style>
