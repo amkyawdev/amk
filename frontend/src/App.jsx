@@ -19,10 +19,29 @@ import { StoragePermissionDialog } from './dialogs';
 
 // Protected Route wrapper
 const ProtectedRoute = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
-  const isLoggedIn = user?.isLoggedIn;
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
+  
+  useEffect(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      setIsLoggedIn(!!user?.isLoggedIn);
+    } catch (e) {
+      setError(e.message);
+    }
+    setLoading(false);
+  }, []);
 
+  if (loading) {
+    return <div style={{ background: '#000', minHeight: '100vh' }}></div>;
+  }
+
+  if (error) {
+    return <div style={{ background: '#000', color: '#ff4444', padding: '20px' }}>Error: {error}</div>;
+  }
+  
   if (!isLoggedIn) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
