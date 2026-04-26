@@ -1,13 +1,5 @@
 <template>
   <div class="chat-page">
-    <header class="header">
-      <h1 class="title">AmkyawDev AI</h1>
-      <nav class="nav">
-        <router-link to="/docs">Docs</router-link>
-        <router-link to="/api">API</router-link>
-        <button @click="logout" class="btn-logout">Logout</button>
-      </nav>
-    </header>
     <main class="chat-main">
       <div class="messages" ref="messagesContainer">
         <div v-for="(msg, i) in messages" :key="i" :class="['message', msg.role]">
@@ -114,13 +106,6 @@ onMounted(() => {
 
 <style scoped>
 .chat-page { min-height: 100vh; background: #0a0a0a; display: flex; flex-direction: column; }
-.header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #1a1a1a; }
-.title { font-size: 24px; font-weight: 700; color: #10b981; }
-.nav { display: flex; gap: 24px; align-items: center; }
-.nav a { color: #888; text-decoration: none; font-size: 14px; }
-.nav a:hover { color: #fff; }
-.btn-logout { background: none; border: 1px solid #333; color: #888; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 14px; }
-.btn-logout:hover { border-color: #555; color: #fff; }
 .chat-main { flex: 1; display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; width: 100%; padding: 20px; }
 .messages { flex: 1; overflow-y: auto; padding: 20px 0; }
 .message { display: flex; gap: 12px; margin-bottom: 16px; }
