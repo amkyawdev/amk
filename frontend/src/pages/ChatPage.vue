@@ -105,8 +105,8 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.chat-page { min-height: 100vh; background: #0a0a0a; display: flex; flex-direction: column; }
-.chat-main { flex: 1; display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; width: 100%; padding: 16px; box-sizing: border-box; }
+.chat-page { min-height: 100vh; height: 100vh; background: #0a0a0a; display: flex; flex-direction: column; overflow: hidden; }
+.chat-main { flex: 1; display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; width: 100%; padding: 16px; box-sizing: border-box; overflow: hidden; }
 .messages { flex: 1; overflow-y: auto; padding: 16px 0; }
 .message { display: flex; gap: 10px; margin-bottom: 14px; max-width: 100%; }
 .message.user { flex-direction: row-reverse; }
