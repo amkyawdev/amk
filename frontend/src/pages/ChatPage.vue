@@ -107,9 +107,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.chat-page { min-height: 0; display: flex; flex-direction: column; background: #0a0a0a; padding-top: 50px; }
+.chat-page { min-height: 100vh; display: flex; flex-direction: column; background: #0a0a0a; padding-top: 50px; }
 .chat-main { flex: 1; display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; width: 100%; padding: 12px; box-sizing: border-box; }
-.messages { flex: 1; overflow-y: auto; padding: 12px 0; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+.messages { flex: 1; overflow-y: auto; padding: 12px 0; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; }
 .message { display: flex; gap: 8px; margin-bottom: 10px; max-width: 100%; align-items: flex-start; }
 .message.user { flex-direction: row-reverse; }
 .message-avatar { width: 28px; height: 28px; border-radius: 6px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #10b981; flex-shrink: 0; }
