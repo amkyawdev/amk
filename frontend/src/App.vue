@@ -8,7 +8,7 @@
         <router-link to="/about">About</router-link>
         <template v-if="user">
           <router-link to="/chat" class="btn-chat">Chat</router-link>
-          <button @click="logout" class="btn-login">Logout</button>
+          <button @click="logout" class="btn-logout">Logout</button>
         </template>
         <router-link v-else to="/login" class="btn-login">Login</router-link>
       </div>
@@ -57,12 +57,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .nav-links a:hover { color: #fff; }
 .btn-login { background: #10b981; color: #000 !important; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 13px; }
 .btn-chat { background: #10b981; color: #000 !important; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 13px; }
+.btn-logout { background: #ef4444; color: #fff !important; padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 13px; border: none; cursor: pointer; }
+.btn-logout:hover { background: #dc2626; }
 
 @media (max-width: 480px) {
   .navbar { padding: 10px 12px; }
   .nav-logo { font-size: 14px; }
   .nav-links { gap: 10px; }
   .nav-links a { font-size: 12px; }
-  .btn-login, .btn-chat { padding: 5px 10px; font-size: 12px; }
+  .btn-login, .btn-chat, .btn-logout { padding: 5px 10px; font-size: 12px; }
 }
 </style>
