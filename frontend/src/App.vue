@@ -45,7 +45,7 @@ const logout = async () => {
 
 const isAuthPage = computed(() => {
   const path = route.path
-  return path === '/login' || path === '/register' || path === '/chat'
+  return path === '/login' || path === '/register'
 })
 </script>
 
