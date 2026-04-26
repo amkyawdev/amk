@@ -30,7 +30,7 @@ import Navbar from '../components/Navbar.vue'
 </script>
 
 <style scoped>
-.docs-page { min-height: auto; background: #0a0a0a; }
+.docs-page { min-height: 0; background: #0a0a0a; }
 .content { max-width: 800px; margin: 0 auto; padding: 60px 40px; }
 .page-title { font-size: 36px; font-weight: 700; margin-bottom: 40px; color: #10b981; }
 .doc-section { background: #111; padding: 24px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #1a1a1a; }
