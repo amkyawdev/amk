@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="100%" style="stop-color:#DAA520"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="48" fill="#1a1a1a" stroke="url(#gold)" stroke-width="2"/>
+  
+  <!-- AI Brain/Head Icon -->
+  <g filter="url(#glow)">
+    <!-- Left side of brain -->
+    <path d="M30 35 Q25 30 28 25 Q35 20 42 25 L42 40 Q38 45 30 35" fill="url(#gold)" opacity="0.9"/>
+    
+    <!-- Center processing -->
+    <circle cx="50" cy="35" r="8" fill="url(#gold)"/>
+    <circle cx="50" cy="35" r="4" fill="#1a1a1a"/>
+    
+    <!-- Right side of brain -->
+    <path d="M70 35 Q75 30 72 25 Q65 20 58 25 L58 40 Q62 45 70 35" fill="url(#gold)" opacity="0.9"/>
+    
+    <!-- Neural connections -->
+    <line x1="42" y1="35" x2="42" y2="50" stroke="url(#gold)" stroke-width="2" opacity="0.6"/>
+    <line x1="58" y1="35" x2="58" y2="50" stroke="url(#gold)" stroke-width="2" opacity="0.6"/>
+    <line x1="50" y1="43" x2="50" y2="55" stroke="url(#gold)" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Bottom data streams -->
+    <rect x="35" y="55" width="30" height="4" rx="2" fill="url(#gold)" opacity="0.8"/>
+    <rect x="40" y="62" width="20" height="4" rx="2" fill="url(#gold)" opacity="0.6"/>
+    <rect x="45" y="69" width="10" height="4" rx="2" fill="url(#gold)" opacity="0.4"/>
+  </g>
+  
+  <!-- Sparkle accents -->
+  <circle cx="20" cy="25" r="2" fill="#FFD700" opacity="0.8"/>
+  <circle cx="80" cy="25" r="2" fill="#FFD700" opacity="0.8"/>
+  <circle cx="15" cy="50" r="1.5" fill="#FFD700" opacity="0.6"/>
+  <circle cx="85" cy="50" r="1.5" fill="#FFD700" opacity="0.6"/>
+</svg>
