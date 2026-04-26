@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <nav class="navbar" v-if="!hideNavbar">
+    <nav class="navbar">
       <router-link to="/" class="nav-logo">AmkyawDev AI</router-link>
       <div class="nav-links">
         <router-link to="/docs">Docs</router-link>
@@ -13,7 +13,7 @@
         <router-link v-else to="/login" class="btn-login">Login</router-link>
       </div>
     </nav>
-    <router-view class="page-content" />
+    <router-view />
   </div>
 </template>
 
@@ -44,15 +44,13 @@ const logout = async () => {
 }
 
 const isAuthPage = computed(() => route.path === '/login' || route.path === '/register')
-const hideNavbar = computed(() => false)
 </script>
 
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
-.app { min-height: 100vh; display: flex; flex-direction: column; }
-.navbar { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; z-index: 1000; }
-.page-content { flex: 1; padding-top: 50px; }
+.app { min-height: 100vh; }
+.navbar { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; z-index: 100; }
 .nav-logo { font-size: 16px; font-weight: 700; color: #10b981; text-decoration: none; }
 .nav-links { display: flex; gap: 16px; align-items: center; }
 .nav-links a { color: #666; text-decoration: none; font-size: 13px; }
