@@ -53,8 +53,7 @@ const isAuthPage = computed(() => {
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; overflow-x: hidden; }
 .app { min-height: 100vh; }
-.navbar { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; z-index: 100; }
-.full-page { padding-top: 0; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; }
 .nav-logo { font-size: 16px; font-weight: 700; color: #10b981; text-decoration: none; }
 .nav-links { display: flex; gap: 16px; align-items: center; }
 .nav-links a { color: #666; text-decoration: none; font-size: 13px; }
