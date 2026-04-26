@@ -8,7 +8,7 @@
         <router-link to="/about">About</router-link>
         <template v-if="user">
           <router-link to="/chat" class="btn-chat">Chat</router-link>
-          <button @click="logout" class="btn-logout">Logout</button>
+          <button @click="logout" class="btn-login">Logout</button>
         </template>
         <router-link v-else to="/login" class="btn-login">Login</router-link>
       </div>
