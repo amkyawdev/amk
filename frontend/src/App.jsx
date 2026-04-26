@@ -17,6 +17,39 @@ import {
 
 import { StoragePermissionDialog } from './dialogs';
 
+// Error Boundary wrapper
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error: error.message };
+  }
+  
+  componentDidCatch(error, errorInfo) {
+    console.error('React Error:', error, errorInfo);
+  }
+  
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ background: '#000', minHeight: '100vh', padding: '20px', color: '#ff4444' }}>
+          <h2>Error ဖြစ်ပါပါး!</h2>
+          <p>{this.state.error}</p>
+          <button onClick={() => window.location.reload()} style={{
+            background: '#FFD700', color: '#000', padding: '10px 20px', border: 'none', borderRadius: '8px', cursor: 'pointer'
+          }}>
+            Reload
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 // Protected Route wrapper
 const ProtectedRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
